@@ -2,16 +2,21 @@
 <div class="main  vertical-center">
   <div *ngIf="!isEnd else ended" class="container" style="max-width: 800px;">
 
-    <h3 class="mb-3 mt-3">{{currentIndex+1}} of {{question.length}} questions</h3>
-
-    <div class="row">
-      <div class="col text-center">
-        <h3 class="mb-5 mt-3">{{question[currentIndex].text}}</h3>
-      </div>
-    </div>
-
     <div class="row g-2 mt-2">
-      <img [src]="question[currentIndex].image" class="question-img" alt="Question Image">
+      <!-- Number of questions -->
+      <h3 class="mb-3 mt-3">{{currentIndex+1}} of {{question.length}} questions</h3>
+
+      <!-- Question -->
+      <div class="col text-center">
+        <h3 class="p-3 mb-5 bg-dark text-white">{{question[currentIndex].text}}</h3>
+      </div>
+
+      <!-- Image -->
+      <div  class="text-center">
+        <img *ngIf="question[currentIndex].image" [src]="question[currentIndex].image" class="rounded question-img" alt="Question Image">
+      </div>
+
+      <!-- Choices -->
       <div *ngFor="let Choice of question[currentIndex].choices" class="col-xs-12 col-md-6">
         <button (click)="onClickChoice(Choice)" class="btn btn-primary" style="width: 100%;">{{Choice.text}}</button>
       </div>
@@ -28,7 +33,9 @@
       </div>
 
       <div class="row g-2 mt-2">
-        <img [src]="winner" class="winning-img" alt="Winning img">
+        <div class="text-center">
+          <img [src]="winner" class="rounded winning-img" alt="Winning img">
+        </div>
         <div class="text-center">
           <button (click)="onClickRestart()" class="btn btn-warning" style="width: 100%;">Re-start Game</button>
         </div>

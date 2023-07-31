@@ -42,13 +42,14 @@ export class QuizComponent {
   }
 
   private checkScore(score: number){
-    if(score == this.question.length && score != this.question.length){
-      this.winner = '../../assets/images/smart.jpg'
-    }else if(score > this.question.length/2){
-      this.winner = '../../assets/images/ohMyGwab.jpg'
-    } else {
+    if(score == this.question.length - 1){
+      this.winner = '../../assets/images/smart.png'
+    }else if(score < this.question.length/2){
       this.winner = '../../assets/images/joker.jpg'
+    } else if(score >= this.question.length/2){
+      this.winner = '../../assets/images/ohMyGwab.jpg'
     }
+    return this.winner;
   }
 
   private clickSound() {
@@ -62,8 +63,9 @@ export class QuizComponent {
     this.score = 0;
     this.restartGame();
   }
-
+  
   private restartGame() {
+    this.question = this.quizService.getQuizData();
     this.currentIndex = 0;
     this.isEnd = false;
   }

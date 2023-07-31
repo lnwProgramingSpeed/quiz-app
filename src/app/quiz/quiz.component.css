@@ -24,11 +24,14 @@
 }
 
 .question-img {
-    height: 10%;
-    box-shadow: 5px 5px 10px grey;
-    margin-bottom: 10px;
+    width: 60%;
 }
 
 .winning-img{
-    height: 250px;
-} 
+    width: 25%;
+}
+
+.bg-dark {
+    --bs-bg-opacity: .5;
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+  }
