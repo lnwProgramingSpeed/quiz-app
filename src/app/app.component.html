@@ -1,13 +1,38 @@
+<audio src="../assets/audio/bg-sound.mp3" autoplay loop></audio>
 <div class="main  vertical-center">
-  <div class="container">
+  <div *ngIf="!isEnd else ended" class="container" style="max-width: 800px;">
+
+    <h3 class="mb-3 mt-3">{{currentIndex+1}} of {{question.length}} questions</h3>
+
     <div class="row">
-      <div class="col-xs-12 col-md-6">
+      <div class="col text-center">
         <h3 class="mb-5 mt-3">{{question[currentIndex].text}}</h3>
-        <img src="../assets/images/Futari-bun no Shoumei.jpg" alt="Question Image">
-        <div *ngFor="let Choice of question[0].choices" class="row g-2">
-          <button (click)="onClickChoice(Choice)" class="btn btn-primary" style="width: 100%;">{{Choice.text}}</button>
+      </div>
+    </div>
+
+    <div class="row g-2 mt-2">
+      <img [src]="question[currentIndex].image" class="question-img" alt="Question Image">
+      <div *ngFor="let Choice of question[currentIndex].choices" class="col-xs-12 col-md-6">
+        <button (click)="onClickChoice(Choice)" class="btn btn-primary" style="width: 100%;">{{Choice.text}}</button>
+      </div>
+    </div>
+
+  </div>
+
+  <ng-template #ended>
+    <div class="container" style="max-width: 800px;">
+      <div class="row">
+        <div class="col text-center">
+          <h3 class="mb-5 mt-3">{{score}} out of {{question.length}}</h3>
+        </div>
+      </div>
+
+      <div class="row g-2 mt-2">
+        <img [src]="winner" class="winning-img" alt="Winning img">
+        <div class="text-center">
+          <button (click)="onClickRestart()" class="btn btn-warning" style="width: 100%;">Re-start Game</button>
         </div>
       </div>
     </div>
-  </div>
+  </ng-template>
 </div>

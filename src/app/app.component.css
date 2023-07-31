@@ -22,3 +22,13 @@
     display: flex;
     align-items: center;
 }
+
+.question-img {
+    height: 15%;
+    box-shadow: 5px 5px 10px grey;
+    margin-bottom: 10px;
+}
+
+.winning-img{
+    height: 250px;
+} 
