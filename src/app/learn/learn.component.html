@@ -1,0 +1,70 @@
+<div class="main vertical-center">
+    <div class="container-md">
+        <div class="col g-2 mt-5 text-center">
+
+            <div class="btn-group btn-group-sm" style="font-size: 16px;">
+                <input type="radio" name="btnradio" id="btnradio1" autocomplete="off" checked class="btn-check"
+                    (change)="showEachQuestion = true">
+                <label for="btnradio1" class="btn btn-black">Each Question</label>
+
+                <input type="radio" name="btnradio" id="btnradio2" autocomplete="off" class="btn-check"
+                    (change)="showEachQuestion = false">
+                <label for="btnradio2" class="btn btn-black">Question List</label>
+            </div>
+
+            <!-- Each Question -->
+            <div *ngIf="showEachQuestion">
+                <div class="row">
+                    <div class="text-center">
+                        <h3 class="mb-3 mt-5">{{ currentIndex + 1 }} of {{ question.length }}</h3>
+                      
+                        <h3 class="p-3 mb-5 bg-dark text-white">Question: {{ question[currentIndex].text }}</h3>
+                      
+                        <h3 class="p-3 mb-5 bg-light faded-background">Answer: {{ answer[currentIndex] }}</h3>
+                      </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <button (click)="onClickPreviousQuestion()"
+                                class="btn btn-dark black-fade-button full-width-button"
+                                [style.opacity]="isPreviousButtonDisabled() ? 0.5 : 0.8"
+                                [disabled]="isPreviousButtonDisabled()">
+                                Previous question
+                            </button>
+                        </div>
+                        <div class="col">
+                            <button (click)="onClickNextQuestion()"
+                                class="btn btn-dark black-fade-button full-width-button"
+                                [style.opacity]="isNextButtonDisabled() ? 0.5 : 0.8"
+                                [disabled]="isNextButtonDisabled()">
+                                Next question
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Question List -->
+            <div *ngIf="!showEachQuestion">
+                <div class="container">
+                    <div class="row my-4" *ngFor="let eachQuestion of question; let i = index">
+                        <div class="col-lg-8 order-lg-1 order-1">
+                            <h3 class="bg-dark text-white p-2 mb-2 rounded">
+                                {{eachQuestion.text}}
+                            </h3>
+                        </div>
+                        <div class="col-lg-4 order-lg-2 order-2">
+                            <h3 class="bg-light p-2 mb-2 rounded">
+                                👍 {{answer[i]}}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

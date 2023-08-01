@@ -8,7 +8,7 @@
 
       <!-- Question -->
       <div class="col text-center">
-        <h3 class="p-3 mb-5 bg-dark text-white">{{question[currentIndex].text}}</h3>
+        <h3 class="p-3 mb-5 bg-dark text-white rounded">{{question[currentIndex].text}}</h3>
       </div>
 
       <!-- Image -->
@@ -18,7 +18,7 @@
 
       <!-- Choices -->
       <div *ngFor="let Choice of question[currentIndex].choices" class="col-xs-12 col-md-6">
-        <button (click)="onClickChoice(Choice)" class="btn btn-primary" style="width: 100%;">{{Choice.text}}</button>
+        <button (click)="onClickChoice(Choice)" class="btn btn-light" style="width: 100%;">{{Choice.text}}</button>
       </div>
     </div>
 
