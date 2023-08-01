@@ -131,7 +131,6 @@ export class QuizService {
 
   getQuizDataNoImage() {
     const questionsNoImage: Question[] = this.Question.filter(({ image }) => image === '');
-    console.log(questionsNoImage);
     return this.shuffleArray(questionsNoImage);
   }
 
