@@ -11,16 +11,26 @@ import { Question } from '../question';
 export class LearnComponent {
   quizService: QuizService = inject(QuizService);
 
-  question: Question[];
+  question: Question[] = [];
   answer: string[] = [];
   currentIndex = 0;
 
   showEachQuestion = true;
 
   constructor() {
-    this.question = this.quizService.getQuizDataNoImage();
-    this.answer = this.getAnswer();
-    console.log(this.answer);
+  }
+
+  async ngOnInit() {
+    this.fetchQuizData();
+  }
+
+  async fetchQuizData() {
+    try {
+      this.question = await this.quizService.getQuizDataNoImage();
+      this.answer = this.getAnswer();
+    } catch (error) {
+      console.error('Error fetching quiz data:', error);
+    }
   }
 
   private getAnswer() {

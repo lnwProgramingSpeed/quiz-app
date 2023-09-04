@@ -11,7 +11,7 @@ import { Question } from '../question';
 export class QuizComponent {
   quizService: QuizService = inject(QuizService);
 
-  question: Question[];
+  question: Question[] = [];
   currentIndex = 0;
   score = 0;
   isEnd = false;
@@ -21,9 +21,13 @@ export class QuizComponent {
   winner='';
 
   constructor() {
-    this.question = this.quizService.getQuizData();
+    this.ngOnInit();
     this.click.src = '../../assets/audio/explosion.wav';
     this.onClickRestart();
+  }
+
+  async ngOnInit() {
+    this.question = await this.quizService.getQuizData();
   }
 
   onClickChoice(Choice: Choice) {
@@ -65,7 +69,7 @@ export class QuizComponent {
   }
   
   private restartGame() {
-    this.question = this.quizService.getQuizData();
+    this.ngOnInit();
     this.currentIndex = 0;
     this.isEnd = false;
   }
